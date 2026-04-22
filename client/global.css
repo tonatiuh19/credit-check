@@ -1,0 +1,165 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme for CreditIQ
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* CreditIQ Brand Colors */
+    /* Navy #0A0F1E */
+    --background: 248 65% 6%;
+    --foreground: 210 40% 98%;
+
+    /* Cards on dark navy background */
+    --card: 248 65% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 248 65% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary: Electric Indigo #4F46E5 */
+    --primary: 244 73% 59%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary: Light backgrounds */
+    --secondary: 248 65% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 248 65% 20%;
+    --muted-foreground: 210 30% 75%;
+
+    /* Accent: Emerald #10B981 */
+    --accent: 160 84% 39%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Destructive: Amber #F59E0B */
+    --destructive: 38 92% 50%;
+    --destructive-foreground: 248 65% 6%;
+
+    --border: 248 65% 20%;
+    --input: 248 65% 20%;
+    --ring: 244 73% 59%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 248 65% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 244 73% 59%;
+    --sidebar-primary-foreground: 248 65% 6%;
+    --sidebar-accent: 160 84% 39%;
+    --sidebar-accent-foreground: 248 65% 6%;
+    --sidebar-border: 248 65% 20%;
+    --sidebar-ring: 244 73% 59%;
+  }
+
+  .dark {
+    --background: 248 65% 6%;
+    --foreground: 210 40% 98%;
+    --card: 248 65% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 248 65% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 244 73% 59%;
+    --primary-foreground: 248 65% 6%;
+    --secondary: 248 65% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 248 65% 20%;
+    --muted-foreground: 210 30% 75%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 248 65% 6%;
+    --destructive: 38 92% 50%;
+    --destructive-foreground: 248 65% 6%;
+    --border: 248 65% 20%;
+    --input: 248 65% 20%;
+    --ring: 244 73% 59%;
+    --sidebar-background: 248 65% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 244 73% 59%;
+    --sidebar-primary-foreground: 248 65% 6%;
+    --sidebar-accent: 160 84% 39%;
+    --sidebar-accent-foreground: 248 65% 6%;
+    --sidebar-border: 248 65% 20%;
+    --sidebar-ring: 244 73% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* CreditIQ Typography */
+  h1, h2, h3 {
+    @apply font-dm-serif;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl font-normal tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-normal;
+  }
+
+  h3 {
+    @apply text-2xl font-normal;
+  }
+
+  body {
+    @apply font-inter;
+  }
+
+  :where(p, span, li, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+    @apply font-space-mono;
+  }
+
+  /* Score displays and numeric data */
+  .score-display {
+    @apply font-space-mono font-bold;
+  }
+}
+
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fillGauge {
+    from {
+      stroke-dashoffset: 565;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+}
