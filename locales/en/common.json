@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand": "MyCreditFICO",
+    "signin": "Sign In",
+    "signup": "Get Started",
+    "signout": "Sign Out",
+    "scores": {
+      "tracker": "ScoreTracker",
+      "builder": "ScoreBuilder",
+      "boost": "ScoreBoost"
+    },
+    "reports": {
+      "smart": "Smart Credit Report",
+      "3b": "3B Report & Scores"
+    }
+  },
+  "auth": {
+    "google": "Continue with Google",
+    "apple": "Continue with Apple",
+    "email": "Or sign in with your email",
+    "signup": "Create account",
+    "signin": "Sign in",
+    "email_label": "Email address",
+    "password_label": "Password",
+    "name_label": "Full name",
+    "forgot": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "or": "Or"
+  },
+  "onboarding": {
+    "title": "Get Your Credit Score in 5 Minutes",
+    "subtitle": "Join millions taking control of their credit. Safe, secure, and fast.",
+    "steps": {
+      "account": "Create Account",
+      "personal": "Personal Info",
+      "identity": "Identity Type",
+      "consent": "Legal Consent",
+      "billing": "Start Trial"
+    },
+    "identity_type": {
+      "title": "Select Your Identity Type",
+      "ssn": "SSN (Social Security Number)",
+      "ssn_desc": "For US citizens and permanent residents",
+      "itin": "ITIN (Individual Taxpayer Identification Number)",
+      "itin_desc": "For immigrants and non-citizens",
+      "itin_warning": "ITIN report costs $60 per pull"
+    },
+    "consent": {
+      "title": "Legal Consent Required",
+      "fcra": "By continuing, you authorize the review of your credit history under the Fair Credit Reporting Act (FCRA).",
+      "agree": "I agree to the terms and authorize the credit pull"
+    },
+    "personal": {
+      "firstname": "First name",
+      "lastname": "Last name",
+      "dob": "Date of birth",
+      "address": "Street address",
+      "city": "City",
+      "state": "State",
+      "zip": "ZIP code",
+      "ssn_itin": "SSN / ITIN"
+    }
+  },
+  "billing": {
+    "trial": "Start 7-day trial for $7",
+    "then": "Then $25/month",
+    "cancel": "Cancel anytime",
+    "monthly": "$25/month",
+    "trial_badge": "7-day trial",
+    "manage": "Manage Billing",
+    "portal": "Open Billing Portal"
+  },
+  "dashboard": {
+    "score": {
+      "title": "Your Credit Score",
+      "as_of": "As of {date}",
+      "starting": "Your starting score was {score}",
+      "gained": "You added +{pts} pts so far"
+    },
+    "future_score": "Your Future Score",
+    "scorebuilder": {
+      "title": "ScoreBuilder®",
+      "potential": "+{pts} pts potential",
+      "cta": "Take Action Now"
+    },
+    "scoreboost": {
+      "title": "ScoreBoost™",
+      "boost": "+{pts} pts with on-time payments",
+      "risk": "-{pts} pts risk from overspending",
+      "cta": "Start a Plan"
+    },
+    "report": {
+      "title": "Smart Credit Report®",
+      "grade": "Your Current Grade",
+      "last_update": "Last Update"
+    },
+    "3b": {
+      "title": "3B Report & Scores",
+      "experian": "Experian",
+      "transunion": "TransUnion",
+      "equifax": "Equifax"
+    },
+    "offers": {
+      "title": "myLONA® — Credit & Loan Offers",
+      "subtitle": "Compare offers without affecting your score",
+      "cta": "View All Offers"
+    },
+    "privacy": {
+      "title": "PrivacyMaster®",
+      "label": "Your personal info:",
+      "found": "Found on {n} new websites",
+      "next_scan": "Next scan in 7 days"
+    },
+    "pulls": {
+      "available": "Available pulls this month: {n}/{max}",
+      "limit_reached": "Monthly limit reached",
+      "refresh": "Refresh Credit Report"
+    }
+  },
+  "itin": {
+    "cost_warning": "ITIN report costs $60 per pull",
+    "confirm": "Confirm $60 ITIN Pull",
+    "confirm_desc": "This will trigger a credit pull with myFICO at a cost of $60. Do you want to continue?"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "unauthorized": "You must be signed in to access this page.",
+    "session_expired": "Your session has expired. Please sign in again."
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "close": "Close",
+    "confirm": "Confirm"
+  }
+}

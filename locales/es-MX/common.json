@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand": "MyCreditFICO",
+    "signin": "Iniciar sesión",
+    "signup": "Comenzar",
+    "signout": "Cerrar sesión",
+    "scores": {
+      "tracker": "Rastreador de puntuación",
+      "builder": "Constructor de puntuación",
+      "boost": "Impulso de puntuación"
+    },
+    "reports": {
+      "smart": "Reporte de crédito inteligente",
+      "3b": "Reporte y puntuaciones de 3 bureaus"
+    }
+  },
+  "auth": {
+    "google": "Continuar con Google",
+    "apple": "Continuar con Apple",
+    "email": "O inicia sesión con tu correo",
+    "signup": "Crear cuenta",
+    "signin": "Iniciar sesión",
+    "email_label": "Correo electrónico",
+    "password_label": "Contraseña",
+    "name_label": "Nombre completo",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "no_account": "¿No tienes una cuenta?",
+    "have_account": "¿Ya tienes una cuenta?",
+    "or": "O"
+  },
+  "onboarding": {
+    "title": "Obtén tu puntuación de crédito en 5 minutos",
+    "subtitle": "Únete a millones que toman el control de su crédito. Seguro y rápido.",
+    "steps": {
+      "account": "Crear cuenta",
+      "personal": "Información personal",
+      "identity": "Tipo de identidad",
+      "consent": "Consentimiento legal",
+      "billing": "Iniciar prueba"
+    },
+    "identity_type": {
+      "title": "Selecciona tu tipo de identidad",
+      "ssn": "SSN (Número de Seguro Social)",
+      "ssn_desc": "Para ciudadanos y residentes permanentes de EE.UU.",
+      "itin": "ITIN (Número de Identificación del Contribuyente Individual)",
+      "itin_desc": "Para inmigrantes y no ciudadanos",
+      "itin_warning": "El reporte ITIN tiene un costo de $60"
+    },
+    "consent": {
+      "title": "Consentimiento legal requerido",
+      "fcra": "Al continuar, autorizas la consulta de tu historial crediticio bajo la Ley de Informes de Crédito Justos (FCRA).",
+      "agree": "Acepto los términos y autorizo la consulta de crédito"
+    },
+    "personal": {
+      "firstname": "Nombre",
+      "lastname": "Apellido",
+      "dob": "Fecha de nacimiento",
+      "address": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado",
+      "zip": "Código postal",
+      "ssn_itin": "SSN / ITIN"
+    }
+  },
+  "billing": {
+    "trial": "Inicia tu prueba de 7 días por $7",
+    "then": "Luego $25/mes",
+    "cancel": "Cancela cuando quieras",
+    "monthly": "$25/mes",
+    "trial_badge": "Prueba de 7 días",
+    "manage": "Administrar facturación",
+    "portal": "Abrir portal de facturación"
+  },
+  "dashboard": {
+    "score": {
+      "title": "Tu puntuación de crédito",
+      "as_of": "Al {date}",
+      "starting": "Tu puntuación inicial fue {score}",
+      "gained": "Has ganado +{pts} pts hasta ahora"
+    },
+    "future_score": "Tu puntuación futura",
+    "scorebuilder": {
+      "title": "ScoreBuilder®",
+      "potential": "+{pts} pts de potencial",
+      "cta": "Tomar acción ahora"
+    },
+    "scoreboost": {
+      "title": "ScoreBoost™",
+      "boost": "+{pts} pts con pagos a tiempo",
+      "risk": "-{pts} pts de riesgo por gastos excesivos",
+      "cta": "Iniciar un plan"
+    },
+    "report": {
+      "title": "Reporte de Crédito Inteligente®",
+      "grade": "Tu calificación actual",
+      "last_update": "Última actualización"
+    },
+    "3b": {
+      "title": "Reporte y puntuaciones de 3 bureaus",
+      "experian": "Experian",
+      "transunion": "TransUnion",
+      "equifax": "Equifax"
+    },
+    "offers": {
+      "title": "myLONA® — Ofertas de crédito y préstamos",
+      "subtitle": "Comparar ofertas sin afectar tu puntuación",
+      "cta": "Ver todas las ofertas"
+    },
+    "privacy": {
+      "title": "PrivacyMaster®",
+      "label": "Tu información personal:",
+      "found": "Encontrado en {n} nuevos sitios web",
+      "next_scan": "Próximo escaneo en 7 días"
+    },
+    "pulls": {
+      "available": "Consultas disponibles este mes: {n}/{max}",
+      "limit_reached": "Has alcanzado tu límite mensual",
+      "refresh": "Actualizar reporte de crédito"
+    }
+  },
+  "itin": {
+    "cost_warning": "El reporte ITIN tiene un costo de $60",
+    "confirm": "Confirmar consulta ITIN de $60",
+    "confirm_desc": "Esto iniciará una consulta de crédito con myFICO con un costo de $60. ¿Deseas continuar?"
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor intenta de nuevo.",
+    "unauthorized": "Debes iniciar sesión para acceder a esta página.",
+    "session_expired": "Tu sesión ha expirado. Por favor inicia sesión de nuevo."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "confirm": "Confirmar"
+  }
+}

@@ -1,18 +1,26 @@
 import { Link } from "react-router-dom";
 import { Sparkles, MessageSquare, Brain, Zap } from "lucide-react";
+import PageHead from "@/components/PageHead";
 
 export default function Advisor() {
   return (
     <div className="min-h-screen bg-background">
+      <PageHead
+        title="AI Credit Advisor"
+        description="Chat with your AI Credit Advisor — get personalized strategies to boost your credit score fast."
+        robots="noindex,nofollow"
+      />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-sm font-bold text-primary-foreground">IQ</span>
+              <span className="text-sm font-bold text-primary-foreground">
+                IQ
+              </span>
             </div>
             <span className="text-xl font-dm-serif text-foreground">
-              CreditIQ
+              MyCreditFICO
             </span>
           </Link>
           <button className="px-6 py-2 rounded-lg bg-destructive text-destructive-foreground text-sm font-medium hover:opacity-90 transition">
@@ -91,9 +99,10 @@ export default function Advisor() {
               AI Advisor Coming Soon
             </h2>
             <p className="text-lg text-muted-foreground font-inter mb-8 max-w-2xl mx-auto">
-              Our Claude-powered advisor is being trained on financial best practices.
-              It will help you understand your credit, create improvement strategies,
-              and answer complex questions about your financial profile.
+              Our Claude-powered advisor is being trained on financial best
+              practices. It will help you understand your credit, create
+              improvement strategies, and answer complex questions about your
+              financial profile.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-2xl mx-auto">

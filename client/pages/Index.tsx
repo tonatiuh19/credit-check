@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
+import PageHead from "@/components/PageHead";
+import { useAuth } from "@clerk/clerk-react";
 import {
   CheckCircle,
   TrendingUp,
@@ -40,7 +44,7 @@ const AnimatedCounter = ({
   return <span>{count}</span>;
 };
 
-const ScoreGauge = ({ score }: { score: number }) => {
+const ScoreGauge = ({ score, label }: { score: number; label: string }) => {
   const radius = 90;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (score / 850) * circumference;
@@ -84,7 +88,7 @@ const ScoreGauge = ({ score }: { score: number }) => {
           <AnimatedCounter end={score} duration={2.5} />
         </div>
         <div className="text-sm text-muted-foreground mt-2 font-inter">
-          Credit Score
+          {label}
         </div>
       </div>
     </div>
@@ -93,9 +97,213 @@ const ScoreGauge = ({ score }: { score: number }) => {
 
 export default function Index() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const { t } = useTranslation();
+  const { isSignedIn, isLoaded } = useAuth();
+
+  const features = [
+    {
+      icon: Shield,
+      title: t("landing.features.bureaus.title"),
+      description: t("landing.features.bureaus.description"),
+      delay: "0s",
+    },
+    {
+      icon: TrendingUp,
+      title: t("landing.features.monitoring.title"),
+      description: t("landing.features.monitoring.description"),
+      delay: "0.1s",
+    },
+    {
+      icon: Zap,
+      title: t("landing.features.advisor.title"),
+      description: t("landing.features.advisor.description"),
+      delay: "0.2s",
+    },
+    {
+      icon: CheckCircle,
+      title: t("landing.features.offers.title"),
+      description: t("landing.features.offers.description"),
+      delay: "0.3s",
+    },
+  ];
+
+  const hiwSteps = [
+    {
+      step: "1",
+      title: t("landing.hiw.s1.title"),
+      description: t("landing.hiw.s1.description"),
+      delay: "0s",
+    },
+    {
+      step: "2",
+      title: t("landing.hiw.s2.title"),
+      description: t("landing.hiw.s2.description"),
+      delay: "0.1s",
+    },
+    {
+      step: "3",
+      title: t("landing.hiw.s3.title"),
+      description: t("landing.hiw.s3.description"),
+      delay: "0.2s",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: t("landing.testimonials.t1.name"),
+      role: t("landing.testimonials.t1.role"),
+      quote: t("landing.testimonials.t1.quote"),
+      delay: "0s",
+    },
+    {
+      name: t("landing.testimonials.t2.name"),
+      role: t("landing.testimonials.t2.role"),
+      quote: t("landing.testimonials.t2.quote"),
+      delay: "0.1s",
+    },
+    {
+      name: t("landing.testimonials.t3.name"),
+      role: t("landing.testimonials.t3.role"),
+      quote: t("landing.testimonials.t3.quote"),
+      delay: "0.2s",
+    },
+  ];
+
+  const scoreRanges = [
+    {
+      range: "300–579",
+      label: t("landing.ranges.poor.label"),
+      color: "from-destructive",
+      description: t("landing.ranges.poor.description"),
+      delay: "0s",
+    },
+    {
+      range: "580–669",
+      label: t("landing.ranges.fair.label"),
+      color: "from-destructive/70",
+      description: t("landing.ranges.fair.description"),
+      delay: "0.1s",
+    },
+    {
+      range: "670–739",
+      label: t("landing.ranges.good.label"),
+      color: "from-primary",
+      description: t("landing.ranges.good.description"),
+      delay: "0.2s",
+    },
+    {
+      range: "740–799",
+      label: t("landing.ranges.very_good.label"),
+      color: "from-primary/70",
+      description: t("landing.ranges.very_good.description"),
+      delay: "0.3s",
+    },
+    {
+      range: "800–850",
+      label: t("landing.ranges.excellent.label"),
+      color: "from-accent",
+      description: t("landing.ranges.excellent.description"),
+      delay: "0.4s",
+    },
+  ];
+
+  const impactStats = [
+    {
+      stat: t("landing.impact.i1.stat"),
+      description: t("landing.impact.i1.description"),
+      subtext: t("landing.impact.i1.subtext"),
+      delay: "0s",
+    },
+    {
+      stat: t("landing.impact.i2.stat"),
+      description: t("landing.impact.i2.description"),
+      subtext: t("landing.impact.i2.subtext"),
+      delay: "0.1s",
+    },
+    {
+      stat: t("landing.impact.i3.stat"),
+      description: t("landing.impact.i3.description"),
+      subtext: t("landing.impact.i3.subtext"),
+      delay: "0.2s",
+    },
+    {
+      stat: t("landing.impact.i4.stat"),
+      description: t("landing.impact.i4.description"),
+      subtext: t("landing.impact.i4.subtext"),
+      delay: "0.3s",
+    },
+  ];
+
+  const faqItems = [
+    { q: t("landing.faq.q1.q"), a: t("landing.faq.q1.a"), delay: "0s" },
+    { q: t("landing.faq.q2.q"), a: t("landing.faq.q2.a"), delay: "0.1s" },
+    { q: t("landing.faq.q3.q"), a: t("landing.faq.q3.a"), delay: "0.2s" },
+    { q: t("landing.faq.q4.q"), a: t("landing.faq.q4.a"), delay: "0.3s" },
+    { q: t("landing.faq.q5.q"), a: t("landing.faq.q5.a"), delay: "0.4s" },
+    { q: t("landing.faq.q6.q"), a: t("landing.faq.q6.a"), delay: "0.5s" },
+  ];
+
+  const comparisonFeatures = [
+    { feature: t("landing.why.feat.bureaus"), creditiq: true, others: false },
+    { feature: t("landing.why.feat.ai"), creditiq: true, others: false },
+    { feature: t("landing.why.feat.alerts"), creditiq: true, others: false },
+    { feature: t("landing.why.feat.offers"), creditiq: true, others: true },
+    { feature: t("landing.why.feat.monitoring"), creditiq: true, others: true },
+    { feature: t("landing.why.feat.tracking"), creditiq: true, others: true },
+  ];
+
+  const advantages = [
+    {
+      icon: Zap,
+      title: t("landing.why.adv.instant.title"),
+      description: t("landing.why.adv.instant.description"),
+      delay: "0.1s",
+    },
+    {
+      icon: Shield,
+      title: t("landing.why.adv.security.title"),
+      description: t("landing.why.adv.security.description"),
+      delay: "0.2s",
+    },
+    {
+      icon: TrendingUp,
+      title: t("landing.why.adv.guidance.title"),
+      description: t("landing.why.adv.guidance.description"),
+      delay: "0.3s",
+    },
+    {
+      icon: CheckCircle,
+      title: t("landing.why.adv.results.title"),
+      description: t("landing.why.adv.results.description"),
+      delay: "0.4s",
+    },
+  ];
+
+  const pricingFeatures = [
+    t("landing.pricing.f1"),
+    t("landing.pricing.f2"),
+    t("landing.pricing.f3"),
+    t("landing.pricing.f4"),
+    t("landing.pricing.f5"),
+    t("landing.pricing.f6"),
+    t("landing.pricing.f7"),
+    t("landing.pricing.f8"),
+    t("landing.pricing.f9"),
+    t("landing.pricing.f10"),
+    t("landing.pricing.f11"),
+    t("landing.pricing.f12"),
+  ];
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <PageHead
+        title={t("seo.home_title", "Build Your Perfect Credit Score")}
+        description={t(
+          "seo.home_description",
+          "Monitor all 3 bureau credit scores in real time, get AI-powered insights, and build your path to financial freedom with MyCreditFICO.",
+        )}
+        canonical="https://creditiq.app"
+      />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -106,7 +314,7 @@ export default function Index() {
               </span>
             </div>
             <span className="text-xl font-dm-serif text-foreground">
-              CreditIQ
+              {t("nav.brand")}
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -114,33 +322,43 @@ export default function Index() {
               href="#features"
               className="text-sm text-muted-foreground hover:text-foreground transition"
             >
-              Features
+              {t("landing.nav.features")}
             </a>
             <a
               href="#how-it-works"
               className="text-sm text-muted-foreground hover:text-foreground transition"
             >
-              How It Works
+              {t("landing.nav.how_it_works")}
             </a>
             <a
               href="#testimonials"
               className="text-sm text-muted-foreground hover:text-foreground transition"
             >
-              Testimonials
+              {t("landing.nav.testimonials")}
             </a>
             <a
               href="#pricing"
               className="text-sm text-muted-foreground hover:text-foreground transition"
             >
-              Pricing
+              {t("landing.nav.pricing")}
             </a>
           </div>
-          <Link
-            to="/dashboard"
-            className="px-6 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
-          >
-            Sign In
-          </Link>
+          {isLoaded &&
+            (isSignedIn ? (
+              <Link
+                to="/dashboard"
+                className="px-6 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+              >
+                {t("landing.nav.dashboard", "Dashboard")}
+              </Link>
+            ) : (
+              <Link
+                to="/sign-in"
+                className="px-6 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+              >
+                {t("landing.nav.signin")}
+              </Link>
+            ))}
         </div>
       </nav>
 
@@ -152,19 +370,18 @@ export default function Index() {
             style={{ animationDelay: "0s" }}
           >
             <h1 className="text-5xl sm:text-6xl font-dm-serif font-normal text-foreground leading-tight">
-              Know Your Credit.{" "}
-              <span className="text-primary">Own Your Future.</span>
+              {t("landing.hero.title1")}{" "}
+              <span className="text-primary">{t("landing.hero.title2")}</span>
             </h1>
             <p className="text-lg text-muted-foreground font-inter max-w-lg">
-              Get instant access to your credit scores from all 3 bureaus,
-              personalized insights, and a roadmap to financial excellence.
+              {t("landing.hero.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 to="/onboarding"
                 className="px-8 py-4 rounded-lg bg-primary text-primary-foreground font-inter font-semibold hover:opacity-90 transition text-center"
               >
-                Get Started Now
+                {t("landing.hero.cta_primary")}
               </Link>
               <button className="px-8 py-4 rounded-lg border border-border text-foreground font-inter font-semibold hover:bg-muted transition">
                 Learn More
@@ -176,7 +393,7 @@ export default function Index() {
             className="flex justify-center animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
-            <ScoreGauge score={742} />
+            <ScoreGauge score={742} label={t("landing.score_label")} />
           </div>
         </div>
       </section>
@@ -188,25 +405,25 @@ export default function Index() {
             <div>
               <Lock className="w-5 h-5 text-primary mx-auto mb-2" />
               <div className="text-sm text-muted-foreground font-inter">
-                256-bit encryption
+                {t("landing.trust.encryption")}
               </div>
             </div>
             <div>
               <CheckCircle className="w-5 h-5 text-accent mx-auto mb-2" />
               <div className="text-sm text-muted-foreground font-inter">
-                FCRA Compliant
+                {t("landing.trust.fcra")}
               </div>
             </div>
             <div>
               <BarChart3 className="w-5 h-5 text-primary mx-auto mb-2" />
               <div className="text-sm text-muted-foreground font-inter">
-                3-Bureau Coverage
+                {t("landing.trust.bureaus")}
               </div>
             </div>
             <div>
               <Users className="w-5 h-5 text-accent mx-auto mb-2" />
               <div className="text-sm text-muted-foreground font-inter">
-                2M+ Users
+                {t("landing.trust.users")}
               </div>
             </div>
           </div>
@@ -218,43 +435,15 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Powerful Tools for Your Credit
+              {t("landing.features.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              Everything you need to understand and improve your credit profile
+              {t("landing.features.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Shield,
-                title: "3-Bureau Scores",
-                description:
-                  "Real-time access to Equifax, Experian, and TransUnion scores",
-                delay: "0s",
-              },
-              {
-                icon: TrendingUp,
-                title: "Real-time Monitoring",
-                description:
-                  "Get instant alerts when your credit profile changes",
-                delay: "0.1s",
-              },
-              {
-                icon: Zap,
-                title: "AI Credit Advisor",
-                description:
-                  "Personalized recommendations powered by Claude AI",
-                delay: "0.2s",
-              },
-              {
-                icon: CheckCircle,
-                title: "Personalized Offers",
-                description: "Cards and loans matched to your credit profile",
-                delay: "0.3s",
-              },
-            ].map((feature, index) => (
+            {features.map((feature, index) => (
               <div
                 key={index}
                 className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition animate-fade-in"
@@ -281,32 +470,12 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Get Started in Minutes
+              {t("landing.hiw.title")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Create Account",
-                description: "Sign up with email and password in seconds",
-                delay: "0s",
-              },
-              {
-                step: "2",
-                title: "Verify Identity",
-                description: "Complete our secure identity verification",
-                delay: "0.1s",
-              },
-              {
-                step: "3",
-                title: "See Your Scores",
-                description:
-                  "Instantly access all 3 bureau scores and insights",
-                delay: "0.2s",
-              },
-            ].map((item, index) => (
+            {hiwSteps.map((item, index) => (
               <div
                 key={index}
                 className="text-center animate-fade-in"
@@ -332,34 +501,12 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Trusted by 2M+ Users
+              {t("landing.testimonials.title")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "Improved score by 47 points",
-                quote:
-                  "CreditIQ gave me the clarity I needed. The AI advisor was game-changing.",
-                delay: "0s",
-              },
-              {
-                name: "Michael Chen",
-                role: "Got approved for premium card",
-                quote:
-                  "Real-time monitoring caught an error on my report within hours.",
-                delay: "0.1s",
-              },
-              {
-                name: "Emma Rodriguez",
-                role: "Paid off $12K in debt",
-                quote:
-                  "The personalized insights helped me create a realistic plan.",
-                delay: "0.2s",
-              },
-            ].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="p-8 rounded-xl bg-card border border-border animate-fade-in"
@@ -395,52 +542,15 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Understand Your Score
+              {t("landing.ranges.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              Credit scores tell your financial story. Here's what yours means.
+              {t("landing.ranges.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
-            {[
-              {
-                range: "300-579",
-                label: "Poor",
-                color: "from-destructive",
-                description:
-                  "Significant financial challenges. High borrowing costs.",
-                delay: "0s",
-              },
-              {
-                range: "580-669",
-                label: "Fair",
-                color: "from-destructive/70",
-                description: "Some challenges. Better rates with effort.",
-                delay: "0.1s",
-              },
-              {
-                range: "670-739",
-                label: "Good",
-                color: "from-primary",
-                description: "Solid credit. Qualified for better offers.",
-                delay: "0.2s",
-              },
-              {
-                range: "740-799",
-                label: "Very Good",
-                color: "from-primary/70",
-                description: "Strong credit. Premium rates available.",
-                delay: "0.3s",
-              },
-              {
-                range: "800-850",
-                label: "Excellent",
-                color: "from-accent",
-                description: "Exceptional credit. Best available rates.",
-                delay: "0.4s",
-              },
-            ].map((item, index) => (
+            {scoreRanges.map((item, index) => (
               <div
                 key={index}
                 className="animate-fade-in"
@@ -470,40 +580,15 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Real Impact, Real Results
+              {t("landing.impact.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              See how our users have transformed their credit
+              {t("landing.impact.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              {
-                stat: "47 pts",
-                description: "Average score improvement",
-                subtext: "In first 6 months",
-                delay: "0s",
-              },
-              {
-                stat: "$2.8K",
-                description: "Average interest savings",
-                subtext: "On new credit card",
-                delay: "0.1s",
-              },
-              {
-                stat: "89%",
-                description: "Approval rate increase",
-                subtext: "After using CreditIQ",
-                delay: "0.2s",
-              },
-              {
-                stat: "12 wks",
-                description: "Average time to goal score",
-                subtext: "With our guidance",
-                delay: "0.3s",
-              },
-            ].map((item, index) => (
+            {impactStats.map((item, index) => (
               <div
                 key={index}
                 className="p-8 rounded-xl bg-card border border-border text-center hover:border-primary/50 transition animate-fade-in"
@@ -529,46 +614,15 @@ export default function Index() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Common Questions
+              {t("landing.faq.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground font-inter">
-              Everything you need to know
+              {t("landing.faq.subtitle")}
             </p>
           </div>
 
           <div className="space-y-6">
-            {[
-              {
-                q: "Is checking my credit score free?",
-                a: "Yes, completely free. You can check your score as many times as you want without any impact or cost.",
-                delay: "0s",
-              },
-              {
-                q: "Will checking my score hurt my credit?",
-                a: "No. Checking your own score is a soft inquiry and doesn't affect your credit. Only hard inquiries (lender checks) impact your score.",
-                delay: "0.1s",
-              },
-              {
-                q: "How often should I check my score?",
-                a: "We recommend checking monthly to track progress and catch errors. Our monitoring alerts you to significant changes automatically.",
-                delay: "0.2s",
-              },
-              {
-                q: "What's the difference between Equifax, Experian, and TransUnion?",
-                a: "These are the three major credit bureaus that collect and maintain credit information. They may have slightly different scores based on their data.",
-                delay: "0.3s",
-              },
-              {
-                q: "Can I improve my score quickly?",
-                a: "It depends on your situation. Paying down balances and disputing errors can help. Most improvements take 1-3 months to show.",
-                delay: "0.4s",
-              },
-              {
-                q: "Is my data safe with CreditIQ?",
-                a: "Absolutely. We use 256-bit encryption, comply with FCRA regulations, and never sell your data to third parties.",
-                delay: "0.5s",
-              },
-            ].map((item, index) => (
+            {faqItems.map((item, index) => (
               <div
                 key={index}
                 className="p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition animate-fade-in"
@@ -584,15 +638,15 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Why CreditIQ Section */}
+      {/* Why MyCreditFICO Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground">
-              Why Choose CreditIQ
+              {t("landing.why.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              The premium alternative to generic credit tools
+              {t("landing.why.subtitle")}
             </p>
           </div>
 
@@ -603,41 +657,10 @@ export default function Index() {
               style={{ animationDelay: "0s" }}
             >
               <h3 className="text-2xl font-dm-serif font-normal text-foreground mb-6">
-                CreditIQ vs. The Rest
+                {t("landing.why.comparison_title")}
               </h3>
 
-              {[
-                {
-                  feature: "3-Bureau Scores",
-                  creditiq: true,
-                  others: false,
-                },
-                {
-                  feature: "AI Credit Advisor",
-                  creditiq: true,
-                  others: false,
-                },
-                {
-                  feature: "Real-time Alerts",
-                  creditiq: true,
-                  others: false,
-                },
-                {
-                  feature: "Personalized Offers",
-                  creditiq: true,
-                  others: true,
-                },
-                {
-                  feature: "Credit Monitoring",
-                  creditiq: true,
-                  others: true,
-                },
-                {
-                  feature: "Score Tracking",
-                  creditiq: true,
-                  others: true,
-                },
-              ].map((item, index) => (
+              {comparisonFeatures.map((item, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between p-3 sm:p-4 rounded-lg bg-card border border-border text-sm sm:text-base"
@@ -668,18 +691,18 @@ export default function Index() {
               <div className="flex gap-6 sm:gap-12 mt-8 pt-6 border-t border-border">
                 <div>
                   <h4 className="font-semibold text-foreground font-inter mb-1 text-sm sm:text-base">
-                    CreditIQ
+                    {t("landing.why.creditiq")}
                   </h4>
                   <p className="text-xs text-muted-foreground font-inter">
-                    Premium
+                    {t("landing.why.creditiq_sub")}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-muted-foreground font-inter mb-1 text-sm sm:text-base">
-                    Others
+                    {t("landing.why.others")}
                   </h4>
                   <p className="text-xs text-muted-foreground font-inter">
-                    Standard
+                    {t("landing.why.others_sub")}
                   </p>
                 </div>
               </div>
@@ -687,36 +710,7 @@ export default function Index() {
 
             {/* Right side - Key advantages */}
             <div className="space-y-6">
-              {[
-                {
-                  icon: Zap,
-                  title: "Instant Access",
-                  description:
-                    "Get all 3 credit scores within minutes of signup. No waiting, no hassle.",
-                  delay: "0.1s",
-                },
-                {
-                  icon: Shield,
-                  title: "Bank-Grade Security",
-                  description:
-                    "Your data is protected with 256-bit encryption and FCRA compliance.",
-                  delay: "0.2s",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Personalized Guidance",
-                  description:
-                    "Our AI advisor gives you specific, actionable steps for your situation.",
-                  delay: "0.3s",
-                },
-                {
-                  icon: CheckCircle,
-                  title: "Proven Results",
-                  description:
-                    "Average 47-point improvement in 6 months with our guidance.",
-                  delay: "0.4s",
-                },
-              ].map((item, index) => {
+              {advantages.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <div
@@ -747,11 +741,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl sm:text-5xl font-dm-serif font-normal text-foreground mb-4">
-              One Plan, Complete Features
+              {t("landing.pricing.title")}
             </h2>
             <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              No surprises. All premium features included. Join now at
-              $9.99/month.
+              {t("landing.pricing.subtitle")}
             </p>
           </div>
 
@@ -766,7 +759,7 @@ export default function Index() {
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                Monthly
+                {t("landing.pricing.monthly")}
               </button>
               <button
                 onClick={() => setIsAnnual(true)}
@@ -776,12 +769,12 @@ export default function Index() {
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                Annual
+                {t("landing.pricing.annual")}
               </button>
             </div>
             {isAnnual && (
               <span className="text-sm font-inter text-accent font-semibold bg-accent/10 px-3 py-1 rounded-full">
-                Save 20%
+                {t("landing.pricing.save")}
               </span>
             )}
           </div>
@@ -794,16 +787,16 @@ export default function Index() {
             >
               <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
                 <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-6 py-2 rounded-full">
-                  PREMIUM PLAN
+                  {t("landing.pricing.badge")}
                 </span>
               </div>
 
               <div className="text-center mb-10">
                 <h3 className="text-4xl font-dm-serif font-normal text-foreground mb-3">
-                  CreditIQ Pro
+                  {t("landing.pricing.plan_name")}
                 </h3>
                 <p className="text-lg text-muted-foreground font-inter">
-                  Everything you need to master your credit
+                  {t("landing.pricing.plan_subtitle")}
                 </p>
               </div>
 
@@ -814,38 +807,27 @@ export default function Index() {
                     {isAnnual ? "$95.88" : "$9.99"}
                   </span>
                   <span className="text-lg text-muted-foreground font-inter">
-                    {isAnnual ? "/year" : "/month"}
+                    {isAnnual
+                      ? t("landing.pricing.per_year")
+                      : t("landing.pricing.per_month")}
                   </span>
                 </div>
                 <p className="text-center text-sm text-muted-foreground font-inter">
                   {isAnnual
-                    ? "Billed annually (save 20%)"
-                    : "Billed monthly, cancel anytime"}
+                    ? t("landing.pricing.billing_annual")
+                    : t("landing.pricing.billing_monthly")}
                 </p>
               </div>
 
               <button className="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-inter font-semibold hover:opacity-90 transition mb-8 text-lg">
-                Get Started
+                {t("landing.pricing.cta")}
               </button>
 
               <div className="space-y-3 mb-8">
                 <h4 className="font-semibold text-foreground font-inter mb-4">
-                  Complete Feature Set:
+                  {t("landing.pricing.features_heading")}
                 </h4>
-                {[
-                  "All 3 Credit Scores (Equifax, Experian, TransUnion)",
-                  "Real-time Credit Alerts",
-                  "AI Credit Advisor Powered by Claude",
-                  "Monthly Credit Reports & Analysis",
-                  "Credit Score Tracking & History",
-                  "Personalized Improvement Recommendations",
-                  "Credit Factor Breakdown & Insights",
-                  "Dispute Management Tools",
-                  "Priority Email Support",
-                  "Advanced Analytics & Trends",
-                  "Personalized Credit Offers",
-                  "Identity Monitoring",
-                ].map((feature, index) => (
+                {pricingFeatures.map((feature, index) => (
                   <div
                     key={index}
                     className="flex items-center gap-3 text-muted-foreground font-inter"
@@ -864,7 +846,7 @@ export default function Index() {
                       0
                     </p>
                     <p className="text-xs text-muted-foreground font-inter">
-                      Credit Card Required
+                      {t("landing.pricing.no_cc")}
                     </p>
                   </div>
                   <div>
@@ -872,7 +854,7 @@ export default function Index() {
                       ∞
                     </p>
                     <p className="text-xs text-muted-foreground font-inter">
-                      Cancel Anytime
+                      {t("landing.pricing.cancel")}
                     </p>
                   </div>
                 </div>
@@ -888,7 +870,7 @@ export default function Index() {
                   0
                 </div>
                 <p className="text-sm text-muted-foreground font-inter">
-                  Credit Card Required
+                  {t("landing.pricing.no_cc")}
                 </p>
               </div>
               <div>
@@ -896,7 +878,7 @@ export default function Index() {
                   ✓
                 </div>
                 <p className="text-sm text-muted-foreground font-inter">
-                  Instant Access
+                  {t("landing.pricing.instant")}
                 </p>
               </div>
               <div>
@@ -904,7 +886,7 @@ export default function Index() {
                   24/7
                 </div>
                 <p className="text-sm text-muted-foreground font-inter">
-                  Support Available
+                  {t("landing.pricing.support")}
                 </p>
               </div>
               <div>
@@ -912,7 +894,7 @@ export default function Index() {
                   ∞
                 </div>
                 <p className="text-sm text-muted-foreground font-inter">
-                  Cancel Anytime
+                  {t("landing.pricing.cancel")}
                 </p>
               </div>
             </div>
@@ -924,16 +906,16 @@ export default function Index() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/20 to-accent/20 border-y border-primary/20">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <h2 className="text-4xl font-dm-serif font-normal text-foreground mb-4">
-            Your credit score is waiting
+            {t("landing.cta.title")}
           </h2>
           <p className="text-lg text-muted-foreground font-inter mb-8">
-            Join millions who've taken control of their financial future
+            {t("landing.cta.subtitle")}
           </p>
           <Link
             to="/onboarding"
             className="inline-block px-8 py-4 rounded-lg bg-primary text-primary-foreground font-inter font-semibold hover:opacity-90 transition"
           >
-            Get Started Today
+            {t("landing.cta.button")}
           </Link>
         </div>
       </section>
@@ -950,32 +932,32 @@ export default function Index() {
                   </span>
                 </div>
                 <span className="text-lg font-dm-serif text-foreground">
-                  CreditIQ
+                  {t("nav.brand")}
                 </span>
               </div>
               <p className="text-sm text-muted-foreground font-inter">
-                Premium credit intelligence for your financial future.
+                {t("landing.footer.tagline")}
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-foreground font-inter mb-4">
-                Product
+                {t("landing.footer.product")}
               </h4>
               <ul className="space-y-2 text-sm text-muted-foreground font-inter">
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Dashboard
+                    {t("landing.footer.dashboard")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Credit Advisor
+                    {t("landing.footer.advisor")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Monitoring
+                    {t("landing.footer.monitoring")}
                   </a>
                 </li>
               </ul>
@@ -983,22 +965,22 @@ export default function Index() {
 
             <div>
               <h4 className="font-semibold text-foreground font-inter mb-4">
-                Company
+                {t("landing.footer.company")}
               </h4>
               <ul className="space-y-2 text-sm text-muted-foreground font-inter">
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    About
+                    {t("landing.footer.about")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Blog
+                    {t("landing.footer.blog")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Contact
+                    {t("landing.footer.contact")}
                   </a>
                 </li>
               </ul>
@@ -1006,22 +988,22 @@ export default function Index() {
 
             <div>
               <h4 className="font-semibold text-foreground font-inter mb-4">
-                Legal
+                {t("landing.footer.legal")}
               </h4>
               <ul className="space-y-2 text-sm text-muted-foreground font-inter">
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Privacy
+                    {t("landing.footer.privacy")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Terms
+                    {t("landing.footer.terms")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition">
-                    Security
+                    {t("landing.footer.security")}
                   </a>
                 </li>
               </ul>
@@ -1029,18 +1011,35 @@ export default function Index() {
           </div>
 
           <div className="border-t border-border pt-8">
-            <p className="text-xs text-muted-foreground font-inter mb-4">
-              CreditIQ is not a credit repair service and cannot remove accurate
-              negative information from your credit report. CreditIQ services
-              are subject to the Fair Credit Reporting Act (FCRA) and other
-              applicable laws. See our{" "}
-              <a href="#" className="text-primary hover:underline">
-                FCRA disclosure
-              </a>{" "}
-              for more information.
-            </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+              <p className="text-xs text-muted-foreground font-inter">
+                {t("landing.footer.legal_text")}{" "}
+                <a href="#" className="text-primary hover:underline">
+                  {t("landing.footer.fcra_link")}
+                </a>{" "}
+                {t("landing.footer.legal_suffix")}
+              </p>
+              {/* Language switcher */}
+              <div className="flex items-center gap-1 flex-shrink-0">
+                {(["en", "es-MX", "fr"] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => i18n.changeLanguage(lang)}
+                    className={`px-3 py-1 rounded text-xs font-inter font-medium transition-colors ${
+                      i18n.language === lang
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {lang === "en" ? "EN" : lang === "es-MX" ? "ES" : "FR"}
+                  </button>
+                ))}
+              </div>
+            </div>
             <p className="text-xs text-muted-foreground font-inter">
-              © {new Date().getFullYear()} CreditIQ. All rights reserved.
+              {t("landing.footer.copyright", {
+                year: new Date().getFullYear(),
+              })}
             </p>
           </div>
         </div>

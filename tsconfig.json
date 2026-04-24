@@ -15,6 +15,7 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
 
     /* Linting */
@@ -36,6 +37,9 @@
     "client/**/*",
     "server/**/*",
     "shared/**/*",
+    "api/**/*",
+    "lib/**/*",
+    "locales/**/*",
     "vite.config.ts",
     "vite.config.server.ts"
   ],

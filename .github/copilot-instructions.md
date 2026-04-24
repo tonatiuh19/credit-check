@@ -14,6 +14,9 @@
 - **if any revelant change update DESIGN_SYSTEM.md**
 - **Always think about mobile responsiveness and cool, engaging UI/UX when making frontend changes**
 - **if there is an opportunity to add reusable components or utilities, do it immediately to avoid technical debt**
+- **NEVER hardcode user-facing strings — ALL UI text MUST use i18n translation keys via `useTranslation()` from `react-i18next`**
+- **Add new translation keys to ALL THREE locales** (`locales/en/common.json`, `locales/es-MX/common.json`, `locales/fr/common.json`) and inline in `client/i18n.ts` whenever adding new UI text
+- **Use `t("key")` for all labels, buttons, headings, placeholders, error messages, and any visible text in components**
 - **Avoid any breaking changes**
 - **NO EXCEPTIONS to these rules**
 
